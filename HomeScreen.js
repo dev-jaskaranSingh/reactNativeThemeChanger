@@ -1,8 +1,38 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components/native';
 import { switchTheme } from './redux/themeActions';
 import { darkTheme, lightTheme } from './Theme';
+
+const HomeScreen = () => {
+  const theme = useSelector(state => state.theme.theme);
+  console.log('@state : ',theme)
+  const dispatch = useDispatch();
+
+  return (
+    <ThemeProvider theme={theme}>
+      <StatusBar barStyle={theme.STATUS_BAR_STYLE} />
+      <Container>
+        <ThemeContainer>
+          <Text>Welcome to theme App</Text>
+        </ThemeContainer>
+
+        {theme.mode == 'dark' ? (
+          <Button onPress={() => dispatch(switchTheme(lightTheme))}>
+            <ButtonText>Switch to Light</ButtonText>
+          </Button>
+        ) : (
+          <Button onPress={() => dispatch(switchTheme(darkTheme))}>
+            <ButtonText>Switch to dark </ButtonText>
+          </Button>
+        )}
+      </Container>
+    </ThemeProvider>
+  );
+};
+
+export default HomeScreen;
 
 const Container = styled.View`
   flex: 1;
@@ -34,30 +64,3 @@ const Text = styled.Text`
   color: ${props => props.theme.PRIMARY_TEXT_COLOR};
   font-size: 20px;
 `;
-
-const HomeScreen = () => {
-  const theme = useSelector(state => state.themeReducer.theme);
-  const dispatch = useDispatch();
-
-  return (
-    <ThemeProvider theme={theme}>
-      <Container>
-        <ThemeContainer>
-          <Text>Welcome to theme App</Text>
-        </ThemeContainer>
-
-        {theme.mode == 'dark' ? (
-          <Button onPress={() => dispatch(switchTheme(darkTheme))}>
-            <ButtonText>Switch to dark</ButtonText>
-          </Button>
-        ) : (
-          <Button onPress={() => dispatch(switchTheme(lightTheme))}>
-            <ButtonText>Switch to light </ButtonText>
-          </Button>
-        )}
-      </Container>
-    </ThemeProvider>
-  );
-};
-
-export default HomeScreen;

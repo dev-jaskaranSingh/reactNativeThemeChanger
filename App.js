@@ -7,7 +7,6 @@ import HomeScreen from './HomeScreen';
 import themeReducer from './redux/themeReducer';
 
 
-
 const store = createStore(combineReducers({
   theme: themeReducer,
   }),applyMiddleware(thunk));
@@ -17,7 +16,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <HomeScreen/>
+      <HomeScreen />
     </Provider>
   );
 }

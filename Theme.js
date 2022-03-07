@@ -11,7 +11,7 @@ export const lightTheme = {
   mode: 'light',
   PRIMARY_BACKGROUND_COLOR: '#ffffff',
   PRIMARY_TEXT_COLOR: '#212121',
-  PRIMARY_BUTTON_COLOR: '#23a8d9',
+  PRIMARY_BUTTON_COLOR: 'purple',
   PRIMARY_BUTTON_TEXT_COLOR: '#ffffff',
   STATUS_BAR_STYLE: 'default',
 };
